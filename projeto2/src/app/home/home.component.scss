@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  &__row {
+    flex: 1;
+    &__h2 {
+      font-weight: 600;
+    }
+  }
+  &__row:first-child {
+    margin-right: 30px;
+  }
+}

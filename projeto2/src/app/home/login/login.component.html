@@ -1,16 +1,21 @@
 <h4 class="titulo">Login</h4>
 
-<form class="form">
-  <div class="form__group">
-    <input id="nome" class="form__group__input" placeholder="Nome do usuário" />
-  </div>
-
+<form class="form" (ngSubmit)=" login()">
   <div class="form__group">
     <input
-      id="senha"
+      class="form__group__input"
+      placeholder="Nome do usuário"
+      [(ngModel)]="usuario"
+      name="usuario"
+    />
+  </div>
+  <div class="form__group">
+    <input
       type="password"
       class="form__group__input"
       placeholder="Senha"
+      [(ngModel)]="senha"
+      name="senha"
     />
   </div>
   <button type="submit" class="form__botao">Login</button>

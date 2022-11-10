@@ -1,8 +1,14 @@
-<section class="container">
+<div class="container">
   <div class="container__row">
-    <img src="assets/img/home.jpg" alt="Imagem Gato Home" />
+    <div class="container__row__block">
+      <img
+        class="container__row__block__img"
+        src="assets/img/home.jpg"
+        alt="Imagem de um gato para as boas vindas"
+      />
+    </div>
+    <div class="container__row__block">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <div class="container__row">
-    <h2 class="container__row__h2">Bem vindo</h2>
-  </div>
-</section>
+</div>

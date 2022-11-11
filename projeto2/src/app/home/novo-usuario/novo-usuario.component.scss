@@ -1,0 +1,41 @@
+.titulo {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.form {
+  display: block;
+  width: calc(100% + 15px);
+  &__group {
+    margin-bottom: 15px;
+    &__input {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      background-clip: padding-box;
+      border: none;
+      background-color: var(--roxo-claro);
+      border-radius: 10px;
+      outline: none;
+    }
+  }
+  &__botao {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    display: block;
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: opacity .3s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .botao-wrapper {
+    display: flex;
+  }
+}

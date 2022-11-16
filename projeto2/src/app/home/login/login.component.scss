@@ -39,3 +39,15 @@
     display: flex;
   }
 }
+.paragrafo {
+  margin-top: 20px;
+  font-weight: 500;
+  &__link {
+    color: var(--primary);
+    text-decoration: none;
+    &:hover {
+      color: var(--roxo-claro);
+      transition: opacity 0.3s;
+    }
+  }
+}

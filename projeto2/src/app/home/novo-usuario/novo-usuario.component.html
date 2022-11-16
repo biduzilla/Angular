@@ -1,17 +1,70 @@
-<h4 class="titulo">Registre e monstre seu pet</h4>
+<h4 class="titulo">Registre e mostre seu pet</h4>
 
-<form class="form">
+<form class="form" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
   <div class="form__group">
-    <input placeholder="e-mail" class="form__group__input" />
+    <input
+      placeholder="e-mail"
+      class="form__group__input"
+      formControlName="email"
+    />
+
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.['required'] &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="E-mail obrigatório"
+    >
+    </app-mensagem>
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.['email'] &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="E-mail no formato incorreto"
+    >
+    </app-mensagem>
   </div>
   <div class="form__group">
-    <input placeholder="Nome Completo" class="form__group__input" />
+    <input
+      placeholder="Nome Completo"
+      class="form__group__input"
+      formControlName="fullName"
+    />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('fullName')?.errors &&
+        novoUsuarioForm.get('fullName')?.touched
+      "
+      mensagem="Nome Incorreto"
+    ></app-mensagem>
   </div>
   <div class="form__group">
-    <input placeholder="Usuário" class="form__group__input" />
+    <input
+      placeholder="Usuário"
+      class="form__group__input"
+      formControlName="userName"
+    />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('userName')?.errors?.['minusculo'] &&
+        novoUsuarioForm.get('userName')?.touched
+      "
+      mensagem="Usuário deve ser em letra minúscula"
+    >
+    </app-mensagem>
   </div>
   <div class="form__group">
-    <input type="password" placeholder="Senha" class="form__group__input" />
+    <input
+      type="password"
+      placeholder="Senha"
+      class="form__group__input"
+      formControlName="password"
+    />
   </div>
   <button class="form__botao">Registrar</button>
 </form>
+
+<p class="paragrafo">
+  Já é um usuário?<a class="paragrafo__link" [routerLink]="['']"> Faça Login</a>
+</p>

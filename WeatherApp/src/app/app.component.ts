@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
       current: {
         last_updated_epoch: 1668741300,
         last_updated: '2022-11-18 00:15',
-        temp_c: 22.0,
+        temp_c: 14.0,
         temp_f: 71.6,
-        is_day: 0,
+        is_day: 1,
         condition: {
           text: 'Partly cloudy',
           icon: '//cdn.weatherapi.com/weather/64x64/night/116.png',

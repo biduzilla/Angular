@@ -14,13 +14,32 @@
   <div class="container__upper-data">
     <img
       class="container__upper-data__img"
-      src="../assets/1.png"
-      *ngIf="weatherData.current.temp_c <= 15"
+      src="../assets/5.png"
+      *ngIf="
+        weatherData.current.temp_c <= 15 && weatherData.current.is_day == 0
+      "
     />
+
+    <img
+      class="container__upper-data__img"
+      src="../assets/4.png"
+      *ngIf="
+        weatherData.current.temp_c <= 15 && weatherData.current.is_day == 1
+      "
+    />
+
     <img
       class="container__upper-data__img"
       src="../assets/2.png"
-      *ngIf="weatherData.current.temp_c > 15"
+      *ngIf="
+        weatherData.current.temp_c > 15 && weatherData.current.is_day == 1
+      "
+    />
+
+    <img
+      class="container__upper-data__img"
+      src="../assets/3.png"
+      *ngIf="weatherData.current.temp_c > 15 && weatherData.current.is_day == 0"
     />
 
     <div class="container__upper-data__weather-data">
@@ -115,8 +134,6 @@
           {{ weatherData.current.precip_mm }} mm
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

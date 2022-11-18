@@ -1,14 +1,13 @@
 <div class="search">
-  <form class ="search__form" (ngSubmit)="(onSubmit)" #loginForm="ngForm">
+  <form class ="search__form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <input
       class="search__form__input"
       type="text"
       placeholder="Cidade"
       name="cityName"
       [(ngModel)]="cityName"
-      (keyup.enter)="onSubmit()"
     />
-    <button type="submit" class="search__form__botao">
+    <button type="submit" (keyup.enter)="onSubmit() "class="search__form__botao">
       Login
     </button>
   </form>

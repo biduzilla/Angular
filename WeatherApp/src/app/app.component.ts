@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   cityName?: string;
   weatherData: WeatherData;
   local?: LocalData;
+  flag: boolean = false;
 
   ngOnInit(): void {
     var obj = {
@@ -65,25 +66,24 @@ export class AppComponent implements OnInit {
     this.cityName = '';
   }
 
-
-
   private getWeatherData(lat: string, lon: string) {
     this.weatherService.getWeatherData(lat, lon).subscribe({
       next: (response) => {
-        console.log(response);
         this.weatherData = response;
       },
     });
   }
 
-  private getLocalData(cityName: string){
+  private getLocalData(cityName: string) {
     this.weatherService.getLocal(cityName).subscribe({
       next: (response) => {
-        console.log(response);
         this.local = response;
         var adress = `${this.local.Results[0].latitude.toString()},${this.local.Results[0].longitude.toString()}`;
-        console.log('adress: ',adress);
-        this.getWeatherData(this.local.Results[0].latitude.toString(), this.local.Results[0].longitude.toString());
+        console.log('adress: ', adress);
+        this.getWeatherData(
+          this.local.Results[0].latitude.toString(),
+          this.local.Results[0].longitude.toString()
+        );
       },
     });
   }

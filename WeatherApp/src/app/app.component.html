@@ -44,6 +44,9 @@
 
     <div class="container__upper-data__weather-data">
       <div class="container__upper-data__weather-data__location">
+        {{ weatherData.location.localtime | date: 'shortTime'}}
+      </div>
+      <div class="container__upper-data__weather-data__location">
         {{ weatherData.location.name }} - {{ weatherData.location.country }}
       </div>
       <div class="container__upper-data__weather-data__temperature">

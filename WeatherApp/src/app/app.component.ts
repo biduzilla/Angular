@@ -18,14 +18,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     var obj = {
       location: {
-        name: 'Brasilia',
+        name: 'Teste',
         region: 'Distrito Federal',
         country: 'Brazil',
         lat: -15.78,
         lon: -47.92,
         tz_id: 'America/Sao_Paulo',
         localtime_epoch: 1668741934,
-        localtime: '2022-11-18 0:25',
+        localtime: '2022-11-18 22:25',
       },
       current: {
         last_updated_epoch: 1668741300,

@@ -225,14 +225,25 @@ class AppComponent {
         this.weatherData = obj;
     }
     onSubmit() {
-        this.getWeatherData(this.cityName);
+        this.getLocalData(this.cityName);
         this.cityName = '';
     }
-    getWeatherData(cityName) {
-        this.weatherService.getWeatherData(cityName).subscribe({
+    getWeatherData(lat, lon) {
+        this.weatherService.getWeatherData(lat, lon).subscribe({
             next: (response) => {
                 console.log(response);
                 this.weatherData = response;
+            },
+        });
+    }
+    getLocalData(cityName) {
+        this.weatherService.getLocal(cityName).subscribe({
+            next: (response) => {
+                console.log(response);
+                this.local = response;
+                var adress = `${this.local.Results[0].latitude.toString()},${this.local.Results[0].longitude.toString()}`;
+                console.log('adress: ', adress);
+                this.getWeatherData(this.local.Results[0].latitude.toString(), this.local.Results[0].longitude.toString());
             },
         });
     }
@@ -330,12 +341,20 @@ class WeatherService {
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
-    getWeatherData(cityName) {
-        return this.httpClient.get(`https://weatherapi-com.p.rapidapi.com/current.json?q=${cityName}`, {
+    getWeatherData(lat, lon) {
+        return this.httpClient.get(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].weatherApiBaseUrl, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]()
                 .set(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIHostHeaderName, src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIHostHeaderNameValue)
                 .set(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIKeyHeaderName, src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIKeyHeaderNameValue),
-            params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]().set('q', cityName),
+            params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]().set('q', `${lat},${lon}`),
+        });
+    }
+    getLocal(cityName) {
+        return this.httpClient.get('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi', {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]()
+                .set(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIHostHeaderName, 'ca24613bedmshdb8c362ecba0242p12359fjsn337beb0c2285')
+                .set(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].XRapidAPIKeyHeaderName, 'address-from-to-latitude-longitude.p.rapidapi.com'),
+            params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]().set('address', cityName),
         });
     }
 }

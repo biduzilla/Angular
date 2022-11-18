@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   weatherApiBaseUrl:
-    'https://open-weather13.p.rapidapi.com/city/fivedaysforcast/30.438/-89.1028',
+    'https://weatherapi-com.p.rapidapi.com/current.json',
   XRapidAPIHostHeaderName: 'X-RapidAPI-Key',
   XRapidAPIHostHeaderNameValue:
     'ca24613bedmshdb8c362ecba0242p12359fjsn337beb0c2285',
   XRapidAPIKeyHeaderName: 'X-RapidAPI-Host',
-  XRapidAPIKeyHeaderNameValue: 'open-weather13.p.rapidapi.com',
+  XRapidAPIKeyHeaderNameValue: 'weatherapi-com.p.rapidapi.com',
 };
 
 /*

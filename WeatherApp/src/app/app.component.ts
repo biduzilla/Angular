@@ -1,6 +1,7 @@
 import { WeatherData } from './models/weather.model';
 import { WeatherService } from './service/weather.service';
 import { Component, OnInit } from '@angular/core';
+import { LocalData } from './models/local.model';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,51 @@ export class AppComponent implements OnInit {
 
   cityName?: string;
   weatherData: WeatherData;
+  local?: LocalData;
 
   ngOnInit(): void {
-    this.cityName = '';
-  }
-
-  converter(temp: number) {
-    return (temp - 32) / 1.8;
-    // var celsius = (temp - 32) / 1.8;
-    // return Math.floor(celsius * 100) / 100;
+    var obj = {
+      location: {
+        name: 'Brasilia',
+        region: 'Distrito Federal',
+        country: 'Brazil',
+        lat: -15.78,
+        lon: -47.92,
+        tz_id: 'America/Sao_Paulo',
+        localtime_epoch: 1668741934,
+        localtime: '2022-11-18 0:25',
+      },
+      current: {
+        last_updated_epoch: 1668741300,
+        last_updated: '2022-11-18 00:15',
+        temp_c: 22.0,
+        temp_f: 71.6,
+        is_day: 0,
+        condition: {
+          text: 'Partly cloudy',
+          icon: '//cdn.weatherapi.com/weather/64x64/night/116.png',
+          code: 1003,
+        },
+        wind_mph: 2.2,
+        wind_kph: 3.6,
+        wind_degree: 60,
+        wind_dir: 'ENE',
+        pressure_mb: 1016.0,
+        pressure_in: 30.0,
+        precip_mm: 0.0,
+        precip_in: 0.0,
+        humidity: 78,
+        cloud: 75,
+        feelslike_c: 24.6,
+        feelslike_f: 76.2,
+        vis_km: 10.0,
+        vis_miles: 6.0,
+        uv: 1.0,
+        gust_mph: 7.2,
+        gust_kph: 11.5,
+      },
+    };
+    this.weatherData = obj;
   }
 
   onSubmit() {
@@ -32,10 +69,6 @@ export class AppComponent implements OnInit {
     this.weatherService.getWeatherData(cityName).subscribe({
       next: (response) => {
         console.log(response);
-        this.weatherData = response;
-        this.weatherData.main.temp_max = this.converter(response.main.temp_max);
-        this.weatherData.main.temp_min = this.converter(response.main.temp_min);
-        this.weatherData.main.temp = this.converter(response.main.temp);
       },
     });
   }

@@ -6,6 +6,7 @@
       placeholder="Cidade"
       name="cityName"
       [(ngModel)]="cityName"
+      (keyup.enter)="onSubmit()"
     />
   </form>
 </div>
@@ -16,7 +17,11 @@
       src="../assets/1.png"
       *ngIf="weatherData.current.temp_c <= 15"
     />
-    <img class="container__upper-data__img" src="../assets/2.png" *ngIf="weatherData.current.temp_c > 15" />
+    <img
+      class="container__upper-data__img"
+      src="../assets/2.png"
+      *ngIf="weatherData.current.temp_c > 15"
+    />
 
     <div class="container__upper-data__weather-data">
       <div class="container__upper-data__weather-data__location">
@@ -25,31 +30,29 @@
       <div class="container__upper-data__weather-data__temperature">
         {{ weatherData.current.temp_c | number: "1.0-0" }}°C
       </div>
-
     </div>
   </div>
   <div class="container__lower-data">
     <div class="container__lower-data__moreInfo-label">Mais Informações</div>
     <div class="container__lower-data__moreInfo-container">
       <div class="container__lower-data__moreInfo-container__info-block">
-        <!-- <div
+        <div
           class="container__lower-data__moreInfo-container__info-block__label"
         >
-          <img
+          <!-- <img
             class="container__lower-data__moreInfo-container__info-block__label__img"
             src="../assets/temperature.png"
           />
           <span
             class="container__lower-data__moreInfo-container__info-block__label__span"
             >Clima</span
-          >
-
-        </div> -->
+          > -->
+          <img src="{{ weatherData.current.condition.icon }}" />
+        </div>
         <div
           class="container__lower-data__moreInfo-container__info-block__value"
         >
           {{ weatherData.current.condition.text }}
-          <img src="{{ weatherData.current.condition.icon }}" />
         </div>
       </div>
 
@@ -92,6 +95,28 @@
           {{ weatherData.current.wind_kph }} km/h
         </div>
       </div>
+
+      <div class="container__lower-data__moreInfo-container__info-block">
+        <div
+          class="container__lower-data__moreInfo-container__info-block__label"
+        >
+          <img
+            class="container__lower-data__moreInfo-container__info-block__label__img"
+            src="../assets/water.png"
+          />
+          <span
+            class="container__lower-data__moreInfo-container__info-block__label__span"
+            >Precipitação</span
+          >
+        </div>
+        <div
+          class="container__lower-data__moreInfo-container__info-block__value"
+        >
+          {{ weatherData.current.precip_mm }} mm
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>
